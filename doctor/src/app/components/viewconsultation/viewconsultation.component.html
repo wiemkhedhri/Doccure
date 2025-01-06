@@ -1,0 +1,113 @@
+<div>
+   <a  class="btn btn-sm bg-primary-light" (click)="openPDF()" style="    margin-left: 878px;
+   font-size: larger;" >
+     <i class="fas fa-print" ></i> Print
+                                    </a>
+</div>
+<br>
+<div class="invoice-content" id="htmlData">
+  <div class="invoice-item">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="invoice-logo">
+          <img src="assets/img/logo.png" alt="logo">
+        </div>
+      </div>
+      <br>
+      <br>
+      <div class="col-md-6">
+        <p class="invoice-details">
+          <br>
+          <br>
+
+          <strong>Cabinet Number:</strong>{{ficheconsultation?.medFicheConsultation.numcabinet}}   <br>
+
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invoice Item -->
+  <div class="invoice-item">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="invoice-info">
+          <!-- <strong class="customer-text">Invoice From</strong> -->
+          <p class="invoice-details invoice-details-two">
+            <br>
+
+            <strong>Full Name :</strong> {{ficheconsultation?.medFicheConsultation.nomprenom}} <br> <br>
+            <strong>Specialite :</strong> {{ficheconsultation?.medFicheConsultation.specialite.specialites}} <br> <br>
+            <strong>Adress : </strong> {{ficheconsultation?.medFicheConsultation.adresse}} <br> <br>
+            <strong>Phone Number: </strong>{{ficheconsultation?.medFicheConsultation.numtel}}   <br>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="invoice-info invoice-info2">
+          <strong class="customer-text">Patient Name : </strong>
+          <p class="invoice-details"> {{ficheconsultation?.dossierMedicaleFC.patient.nomprenom}}
+         <br>
+
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Invoice Item -->
+  <div class="invoice-item">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="invoice-info">
+          <br>
+          <strong class="customer-text">Date consultation :</strong>
+          <p class="invoice-details invoice-details-two">
+
+{{ficheconsultation?.dateconsultation}}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+<br>
+<br>
+
+  <!-- Invoice Item -->
+  <div class="invoice-item invoice-table-wrap">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-responsive">
+          <table class="invoice-table table table-bordered">
+            <thead>
+              <tr>
+                <th>Description</th>
+
+
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ficheconsultation?.description}}</td>
+
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <br>
+  <!-- /Invoice Item -->
+<br>
+<br>
+<br>
+  <!-- Invoice Information -->
+  <div class="other-info">
+    <h4 style=" margin-left: 665px;">Signature</h4>
+
+  </div>
+  <!-- /Invoice Information -->
+
+</div>

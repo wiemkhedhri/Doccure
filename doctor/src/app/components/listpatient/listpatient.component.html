@@ -1,0 +1,207 @@
+<!-- <div class="text-right">
+  <a   style="color: white;" (click)="hiden()" type="button" class="add-new-btn">Add Patient</a>
+</div> -->
+
+<div class="card">
+  <div class="card-body pt-0">
+
+    <!-- Tab Menu -->
+    <nav class="user-tabs mb-4">
+      <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" href="#pat_appointments" data-toggle="tab">List of My Patient</a>
+        </li>
+
+
+      </ul>
+    </nav>
+    <!-- /Tab Menu -->
+
+    <!-- Tab Content -->
+    <div class="tab-content pt-0">
+
+      <!-- Appointment Tab -->
+      <div id="pat_appointments" class="tab-pane fade show active">
+        <div class="card card-table mb-0">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover table-center mb-0">
+                <thead>
+                  <tr>
+                    <th>Patient Full Name</th>
+                    <th>Phone Number</th>
+                    <th>Email</th>
+
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let p of listpatient">
+                    <td>
+                      <h2 class="table-avatar">
+                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+                          <img class="avatar-img rounded-circle" src="http://localhost:8081/patient/files/{{p.patientRV.photo}}" alt="User Image">
+                        </a>
+                        <a href="doctor-profile.html">{{p.patientRV.nomprenom}}</a>
+                      </h2>
+                    </td>
+                    <td>{{p.patientRV.numtel}}</td>
+                    <td>{{p.patientRV.email}}</td>
+
+
+                    <!-- <td><span class="badge badge-pill bg-success-light">Confirm</span></td> -->
+                    <td class="text-right">
+                      <div class="table-action">
+
+                        <a *ngIf="Currentuseractive['role']=='medecin'" routerLink="/dashbord/detaillepatient/{{p.coderv}}" class="btn btn-sm bg-info-light">
+                          <i class="far fa-eye"></i> View
+                        </a>
+
+                        <a  style="    margin-left: 6px;" routerLink="/dashbord/calnder/{{p.patientRV.id}}" class="btn btn-sm bg-info-light">
+                          Book Appointment      <i class="fas fa-calendar-check"></i>
+                             </a>
+                      </div>
+                    </td>
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Appointment Tab -->
+
+
+
+
+
+
+    </div>
+    <!-- Tab Content -->
+
+  </div>
+</div>
+
+
+
+
+
+
+<div class="page-wrapper" id="formulaire">
+  <div class="content container-fluid">
+
+<!-- Page Header -->
+
+<!-- /Page Header -->
+<hr>
+<div class="row" style="    width: 1000px;"  *ngIf="hiddentest ==true">
+<div class="col-lg-12">
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Add Patient </h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="AddForm"   >
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">First Name and Last Name</label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" formControlName="nomprenom">
+          <div style="color:red;    " *ngIf="AddForm.get('nomprenom')?.hasError('required') && AddForm.get('nomprenom')?.touched" class="alert alert-danger">
+       Firstname and Lastname     is required
+
+                             </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Date of birth</label>
+        <div class="col-md-10">
+          <input type="date" class="form-control" formControlName="datenaissance">
+          <div style="color:red;    " *ngIf="AddForm.get('datenaissance')?.hasError('required') && AddForm.get('datenaissance')?.touched" class="alert alert-danger">
+           Date of birth    is required
+
+                                   </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Sexe</label>
+        <div class="col-md-10">
+          <select name="mmm"class="form-control" formControlName="sexe" >
+            <option value="">-- Select --</option>
+            <option>Female</option>
+            <option>Male</option>
+          </select>
+          <div style="color:red;    " *ngIf="AddForm.get('sexe')?.hasError('required') && AddForm.get('sexe')?.touched" class="alert alert-danger">
+            Sexe   is required
+
+                                   </div>
+        </div>
+      </div>
+
+
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Phone Number</label>
+        <div class="col-md-10">
+          <input type="number" class="form-control" formControlName="numtel">
+          <div style="color:red;    " *ngIf="AddForm.get('numtel')?.hasError('required') && AddForm.get('numtel')?.touched" class="alert alert-danger">
+            Phone Number   is required
+
+                                   </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Social State</label>
+        <div class="col-md-10">
+          <select name="mmm"class="form-control" formControlName="etatsociale" >
+            <option value="">-- Select --</option>
+            <option>Single</option>
+            <option>Maried</option>
+          </select>
+          <div style="color:red; " *ngIf="AddForm.get('etatsociale')?.hasError('required') && AddForm.get('etatsociale')?.touched" class="alert alert-danger">
+      Social State  is required
+
+                                   </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Adress</label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" formControlName="adresse" >
+          <div style="color:red; " *ngIf="AddForm.get('adresse')?.hasError('required') && AddForm.get('adresse')?.touched" class="alert alert-danger">
+     Adress is required
+
+                                         </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-lg-2">Email</label>
+        <div class="col-lg-10">
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="sizing-addon2">@</span>
+            </div>
+            <input type="text" class="form-control" formControlName="email" placeholder="Entrez Votre email" aria-describedby="sizing-addon2">
+            <div style="color:red; " *ngIf="AddForm.get('email')?.hasError('required') && AddForm.get('email')?.touched" class="alert alert-danger">
+             Email is required
+
+                                                  </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="form-group mb-0" style="margin-left: 539px;">
+        <button class="btn btn-primary" [disabled]="AddForm.invalid"  style="    width: 279px;    margin-left: -182px;" type="submit">Register</button>
+        <button class="btn btn-danger"  style="    width: 279px;    margin-left: 13px;" type="reset">anunler</button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>

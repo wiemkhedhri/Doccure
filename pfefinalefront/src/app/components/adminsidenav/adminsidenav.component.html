@@ -1,0 +1,44 @@
+
+
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+
+              <div class="sidebar-inner slimscroll">
+        <div id="sidebar-menu" class="sidebar-menu">
+          <ul>
+            <li class="menu-title">
+              <span>Main</span>
+            </li>
+            <li [class]="activeSideBar == 'dashbord' ? 'active':'' " (click)="change('dashbord')">
+              <!-- class="active"      data binding  -->
+              <a routerLink="/home"><i class="fe fe-home"></i> <span>Dashboard</span></a>
+            </li>
+
+            <li [class]="activeSideBar == 'specialites' ? 'active':'' " (click)="change('specialites')">
+              <a routerLink="/home/specialities"><i class="fe fe-users"></i> <span>Specialities</span></a>
+            </li>
+            <li [class]="activeSideBar == 'adddoctor' ? 'active':'' " (click)="change('adddoctor')" >
+              <a routerLink="/home/adddoctor"><i class="fe fe-document"></i> <span>Add Doctor</span></a>
+            </li>
+
+            <li [class]="activeSideBar == 'profile' ? 'active':'' " (click)="change('profile')" >
+              <a routerLink="/home/profil"><i class="fe fe-user-plus"></i> <span>Profile</span></a>
+            </li>
+            <li [class]="activeSideBar == 'forgetpassword' ? 'active':'' " (click)="change('forgetpassword')" >
+              <a routerLink="/forgetpassword"><i class="fe fe-vector"></i><span>Forgot Password</span></a>
+            </li>
+            <!-- <li class="submenu" [class]="activeSideBar == 'forgetpassword'? 'active':'' " (click)="change('forgetpassword')">
+              <a (click)="display()" style="color: white;"><i class="fe fe-vector"></i> <span> Authentication </span> <span class="menu-arrow"></span></a>
+              <ul [style.display]="displayauth" >
+
+                <li ><a routerLink="/forgetpassword"> Forgot Password </a></li>
+
+              </ul>
+            </li> -->
+
+
+</ul>
+</div>
+</div>
+</div>
+  <!-- /Sidebar -->

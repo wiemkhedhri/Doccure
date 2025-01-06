@@ -1,0 +1,49 @@
+	<!-- Main Wrapper -->
+  <div class="main-wrapper login-body">
+    <div class="login-wrapper">
+      <div class="container">
+          <div class="loginbox" style=" max-width: 995px;
+          min-height: 586px;">
+              <div class="login-left" style="    width: 425px">
+      <img class="img-fluid" src="assets/img/logo-white.png" alt="Logo">
+                </div>
+                <div class="login-right">
+      <div class="login-right-wrap" style="    margin-left: 166px;">
+        <h1>Login</h1>
+        <p class="account-subtitle">Access to your dashboard</p>
+
+        <!-- Form -->
+        <form [formGroup]="FormLogin" (ngSubmit)="login()">
+          <div class="form-group">
+            <input class="form-control" type="text"  formControlName="email" placeholder="Email">
+            <div style="color:red;" *ngIf="FormLogin.get('email')?.hasError('required') && FormLogin.get('email')?.touched" class="alert alert-danger">
+Email is required
+
+               </div>
+          </div>
+          <div class="form-group">
+            <input class="form-control" type="password" formControlName="password" placeholder="Password">
+            <div style="color:red;" *ngIf="FormLogin.get('password')?.hasError('required') && FormLogin.get('password')?.touched" class="alert alert-danger">
+              Password is required
+
+                             </div>
+          </div>
+          <div class="form-group">
+            <button class="btn btn-primary btn-block" type="submit">Login</button>
+          </div>
+        </form>
+        <!-- /Form -->
+
+        <div class="text-center forgotpass"><a routerLink="forgetpassword">Forgot Password?</a></div>
+        <!-- <div class="login-or">
+          <span class="or-line"></span>
+          <span class="span-or">or</span>
+        </div> -->
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /Main Wrapper -->

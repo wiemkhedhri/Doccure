@@ -1,0 +1,238 @@
+<!-- Main Wrapper -->
+<div class="main-wrapper">
+
+  <!-- Header -->
+
+  <!-- /Header -->
+
+  <!-- Sidebar -->
+      <app-adminsidenav></app-adminsidenav>
+  <!-- /Sidebar -->
+
+  <!-- Page Wrapper -->
+        <div class="page-wrapper">
+            <div class="content container-fluid">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="row">
+          <div class="col-sm-7 col-auto">
+            <h3 class="page-title">Specialities</h3>
+            <ul class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+              <li class="breadcrumb-item active">Specialities</li>
+            </ul>
+          </div>
+          <div class="col-sm-5 col">
+            <a href="#Add_Specialities_details" data-toggle="modal" class="btn btn-primary float-right mt-2">Add</a>
+          </div>
+        </div>
+      </div>
+      <!-- imgg -->
+
+      <!-- endimg -->
+      <!-- /Page Header -->
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="card">
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="datatable table table-hover table-center mb-0">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th> Name Specialities</th>
+                      <th class="text-right">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr *ngFor="let s of specialite">
+                      <td>{{s.id}}</td>
+
+                      <td>
+                        <h2 class="table-avatar">
+                          <a (click)="fileInput.click()" title="" #fileInput class="avatar avatar-sm mr-2">
+                            <img class="avatar-img" src="http://localhost:8081/specialite/files/{{s.photo}}" alt="Speciality">
+                          </a>
+                          <a href="profile.html">{{s.specialites}}</a>
+                        </h2>
+                      </td>
+
+                      <form [formGroup]="updatformimage">
+                        <div class="form-floating">
+
+                          <div class="upload-file" style="display:none ;">
+                            <input class="form-control" name="file" (change)="handleFileInput($event)" type="file" id="formFile"
+                              formControlName="photo" #fileInput>
+                          </div>
+                        </div> <br>
+                        <td>
+                          <h2 class="table-avatar">
+                            <a (click)="fileInput.click()" title="" #fileInput class="avatar avatar-sm mr-2">
+                              <img class="avatar-img" src="http://localhost:8081/specialite/files/{{s.photo}}" alt="Speciality">
+                            </a>
+                            <a href="profile.html">{{s.specialites}}</a>
+                          </h2>
+                        </td>
+                      </form>
+
+                      <td class="text-right">
+                        <div class="actions">
+                          <a class="btn btn-sm bg-success-light" style=" margin-right: 4px;" data-toggle="modal" href="#edit_specialities_details" (click)="updateform(s.id)">
+                            <i class="fe fe-pencil"  ></i> Edit
+                          </a>
+                          <a class="btn btn-sm bg-success-light" style="margin-right: 4px;" data-toggle="modal" href="#edit_photo" (click)="updatimgform(s.id)">
+                            <i class="fe fe-pencil"  ></i> Edit Photo
+                          </a>
+                          <a  data-toggle="modal"  (click)="deletespecialites(s.id)" class="btn btn-sm bg-danger-light">
+                            <i class="fe fe-trash"></i> Delete
+                          </a>
+                        </div>
+                      </td>
+                    </tr>
+
+
+
+
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Page Wrapper -->
+
+
+  <!-- Add Modal -->
+  <div class="modal fade" id="Add_Specialities_details" aria-hidden="true" role="dialog" >
+    <div class="modal-dialog modal-dialog-centered" role="document" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Add Specialities</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form     [formGroup]="form" >
+            <div class="row form-row">
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <label>Specialities</label>
+                  <input formControlName="specialites" type="text" class="form-control">
+                  <div style="color:red;" *ngIf="form.get('specialites')?.hasError('required') && form.get('specialites')?.touched" class="alert alert-danger">
+                    specialites is required
+                                   </div>
+                </div>
+              </div>
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <label>Image</label>
+                  <input formControlName="photo"(change)="handleFileInput($event)" type="file"  class="form-control">
+                  <div style="color:red;" *ngIf="form.get('photo')?.hasError('required') && form.get('photo')?.touched" class="alert alert-danger">
+                    Photo  is required
+
+                                   </div>
+                </div>
+              </div>
+
+            </div>
+            <button type="button" data-dismiss="modal" class="btn btn-primary btn-block" (click)="addspecialiltes()" >Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /ADD Modal -->
+
+  <!-- Edit Details Modal !-->
+  <div class="modal fade" id="edit_specialities_details"  aria-hidden="true" role="dialog">
+    <div  class="modal-dialog modal-dialog-centered" role="document" >
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Edit Specialities</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form  [formGroup]="formupdate">
+            <div class="row form-row">
+              <div class="col-12 col-sm-6">
+                <div class="form-group">
+                  <label>Specialities</label>
+                  <input type="text" class="form-control"  formControlName="specialites">
+                  <div style="color:red;" *ngIf="formupdate.get('specialites')?.hasError('required') && formupdate.get('specialites')?.touched" class="alert alert-danger">
+                    Specialites is required
+
+                                   </div>
+                </div>
+              </div>
+
+
+            </div>
+            <button type="button" data-dismiss="modal"   (click)="clickupdate()"  class="btn btn-primary btn-block">Save Changes</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- /Edit Details Modal -->
+
+
+<!-- editimagemodel -->
+<div
+class="modal fade"
+id="edit_photo"
+aria-hidden="true"
+role="dialog"
+>
+<div class="modal-dialog modal-dialog-centered" role="document">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h5 class="modal-title">Update Photo</h5>
+      <button
+        type="button"
+        class="close"
+        data-dismiss="modal"
+        aria-label="Close"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="updatformimage">
+        <div class="row form-row">
+          <div class="col-12 col-sm-6"></div>
+          <div class="col-12">
+            <div class="form-group">
+              <label>Image</label>
+              <input
+                formControlName="photo"
+                type="file"
+                (change)="handleFileInput($event)"
+                class="form-control"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          type="button"
+          data-dismiss="modal"
+          class="btn btn-primary btn-block"
+(click)="updateimage()"
+        >
+          Save Changes
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+</div>
+<!-- editimagemodelend -->
+
+    </div>
+<!-- /Main Wrapper -->

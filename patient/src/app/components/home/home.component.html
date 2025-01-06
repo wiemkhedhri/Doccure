@@ -1,0 +1,274 @@
+<div class="main-wrapper">
+
+  <!-- Header -->
+
+    <app-navbar *ngIf="currentuserstate ==null "></app-navbar>
+
+
+  <!-- Home Banner -->
+
+    <app-headersignin  *ngIf="currentuserstate == '1'" ></app-headersignin>
+
+  <!-- /Home Banner -->
+  <app-header></app-header>
+  <!-- Clinic and Specialities -->
+  <section class="section section-specialities">
+    <div class="container-fluid">
+      <div class="section-header text-center">
+        <h2>Our Specialities</h2>
+        <p class="sub-title">Here you will find our différents spécialites</p>
+      </div>
+      <div class="row justify-content-center">
+        <div class="col-md-9">
+          <!-- Slider -->
+          <div
+            class="specialities-slider slider slick-initialized slick-slider slick-dotted"
+          >
+            <div class="">
+              <div
+                class="slick-track"
+                style="
+                  opacity: 1;
+                  width: 25000px;
+                  margin-left: 28px;
+                  transform: translate3d(-194px, 0px, 0px);
+                  margin-left: 125px;
+                "
+              >
+                <div
+                  class="slick-slide slick-current slick-active"
+                  *ngFor="let s of listspecialite"
+                >
+                  <div>
+                    <div
+                      class="speicality-item text-center"
+                      style="width: 100%; display: inline-block"
+                    >
+                      <div class="speicality-img">
+                        <img
+                          src="http://localhost:8081/specialite/files/{{
+                            s.photo
+                          }}"
+                          class="img-fluid"
+                          alt="Speciality"
+                        />
+                        <span
+                          ><i class="fa fa-circle" aria-hidden="true"></i
+                        ></span>
+                      </div>
+                      <p>{{ s.specialites }}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Slider -->
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Clinic and Specialities -->
+
+  <!-- Popular Section -->
+  <section class="section section-doctor">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-4">
+          <div class="section-header">
+            <h2>Book Our Doctor</h2>
+            <p>In this part you will find our oldest doctors</p>
+          </div>
+          <div class="about-content">
+            <p>in this section you will find three of our oldest doctors</p>
+            <p>
+              Click here to see all of our doctors and to find what you are
+              lokking for
+            </p>
+            <a href="javascript:;" routerLink="/listedoctors">
+              Discover More
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="doctor-slider slider slick-initialized slick-slider">
+            <div >
+              <div class="slick-track" style="opacity: 1; width: 40000px">
+                <div
+                  class="slick-slide slick-current slick-active"
+                  *ngFor="let s of listdoctors; let index = index"
+                  data-slick-index=""
+                  aria-hidden="false"
+                >
+                  <div>
+                    <div
+                      class="profile-widget"
+                      style="width: 100%; display: inline-block"
+                    >
+                      <div class="doc-img">
+                        <a href="doctor-profile.html" tabindex="-1">
+                          <img
+                            class="img-fluid"
+                            alt="User Image"
+                            src="http://localhost:8081/medecin/files/{{
+                              s.photo
+                            }}"
+                          />
+                        </a>
+                      </div>
+                      <div class="pro-content">
+                        <h3 class="title">
+                          <a href="doctor-profile.html" tabindex="-1">{{
+                            s.nomprenom
+                          }}</a>
+                          <i class="fas fa-check-circle verified"></i>
+                        </h3>
+
+                        <ul class="available-info">
+                          <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            {{ s.adresse }}
+                          </li>
+                          <li>
+                            <i class="fa fa-user-md" aria-hidden="true"></i>
+                            {{ s.specialite.specialites }}
+                          </li>
+
+                          <li>
+                            <i class="far fa-money-bill-alt"></i> {{ s.prix }}
+                          </li>
+                          <li>
+                            <p class="doc-location">
+                              <i class="fa fa-phone" aria-hidden="true"></i
+                              >Mobile Number :
+                              <a href="javascript:void(0);">{{ s.numtel }}</a>
+                            </p>
+                          </li>
+                        </ul>
+                        <div class="row row-sm">
+                          <div class="col-6">
+                            <!-- <a href="" routerLink="../doctorprofile/{{s.id}}"  class="btn view-btn" tabindex="-1">View Profile</a> -->
+                          </div>
+                          <div class="col-6">
+                            <a
+                              href=""
+                              class="btn book-btn"
+                              routerLink="../calnder/{{ s.id }}"
+                              tabindex="-1" *ngIf="state=='1'"
+                              >Book Now</a
+                            >
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- /Popular Section -->
+
+  <!-- Availabe Features -->
+  <section class="section section-features">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-md-4 features-img">
+          <img
+            src="assets/img/features/feature.png"
+            class="img-fluid"
+            alt="Feature"
+          />
+        </div>
+        <div class="col-md-8">
+          <div class="section-header">
+            <h2 class="mt-2" style="margin-left: 156px">
+              Availabe Features in Our platform
+            </h2>
+            <p style="margin-left: 38px">
+              we are looking forward to make our platform bigger by
+              collaborating with different kind of diagnostic center
+            </p>
+          </div>
+          <div
+            class="features-slider slider slick-initialized slick-slider slick-dotted"
+            style="margin-left: 136px; width: 671px"
+          >
+            <div class="slick-list draggable" style="padding: 81px 50px">
+              <div
+                class=""
+                style="opacity: 1; width: 30000px; display: inline-block"
+              >
+                <div
+                  class="slick-slide slick-current slick-active slick-center"
+                  data-slick-index="0"
+                  aria-hidden="false"
+                >
+                  <div>
+                    <div
+                      class="feature-item text-center"
+                      style="width: 100%; display: inline-block"
+                    >
+                      <img
+                        src="assets/img/features/feature-04.jpg"
+                        class="img-fluid"
+                        alt="Feature"
+                      />
+                      <p>Laboratory</p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="slick-slide slick-current slick-active slick-center"
+                  data-slick-index="0"
+                  aria-hidden="false"
+                >
+                  <div>
+                    <div
+                      class="feature-item text-center"
+                      style="width: 100%; display: inline-block"
+                    >
+                      <img
+                        src="assets/img/ceentre radilogie.jpg"
+                        class="img-fluid"
+                        alt="Feature"
+                      />
+                      <p>Radiology Center</p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="slick-slide slick-current slick-active slick-center"
+                  data-slick-index="0"
+                  aria-hidden="false"
+                >
+                  <div>
+                    <div
+                      class="feature-item text-center"
+                      style="width: 100%; display: inline-block"
+                    >
+                      <img
+                        src="assets/img/kine.jpg"
+                        class="img-fluid"
+                        alt="Feature"
+                      />
+                      <p>Physiotherapy Center</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Availabe Features -->
+
+  <!-- Footer -->
+  <app-footer></app-footer>
+  <!-- /Footer -->
+</div>

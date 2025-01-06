@@ -1,0 +1,149 @@
+
+
+
+
+
+<!-- Page Wrapper -->
+      <div class="page-wrapper">
+          <div class="content container-fluid">
+
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row">
+        <div class="col">
+          <h3 class="page-title">Add Doctor</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Add Doctor</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="card">
+          <div class="card-header">
+            <h4 class="card-title">Add Doctor</h4>
+          </div>
+          <div class="card-body">
+            <form     (ngSubmit)="add()"      [formGroup]="form" >
+
+                <div class="form-group row">
+                  <label class="col-form-label col-md-2"  >Full Name</label>
+                  <div class="col-md-10">
+                    <input type="text" class="form-control" formControlName="nomprenom">
+                    <div style="color:red;" *ngIf="form.get('nomprenom')?.hasError('required') && form.get('nomprenom')?.touched" class="alert alert-danger">
+                     Full name  is required
+
+                      </div>
+                  </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">Gender</label>
+                <div class="col-md-10">
+                  <select name="mmm"class="form-control" formControlName="sexe" >
+                    <option value="">-- Select --</option>
+                    <option>Female</option>
+                    <option>Male</option>
+
+                  </select>
+                  <div style="color:red;" *ngIf="form.get('sexe')?.hasError('required') && form.get('sexe')?.touched" class="alert alert-danger">
+                    Gender is required
+
+                     </div>
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">Mobile</label>
+                <div class="col-md-10">
+                  <input type="number" class="form-control" formControlName="numtel">
+                  <div style="color:red;" *ngIf="form.get('numtel')?.hasError('required') && form.get('numtel')?.touched" class="alert alert-danger">
+                   Phone number is required
+
+                     </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">Adress</label>
+                <div class="col-md-10">
+                  <input type="text" class="form-control" formControlName="adresse" >
+                  <div style="color:red;" *ngIf="form.get('adresse')?.hasError('required') && form.get('adresse')?.touched" class="alert alert-danger">
+                   Adresse is required
+
+                     </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-lg-2">Email</label>
+                <div class="col-lg-10">
+                  <div class="input-group">
+                    <div class="input-group-prepend">
+                      <span class="input-group-text" id="sizing-addon2">@</span>
+                    </div>
+                    <input type="text" class="form-control" formControlName="email" placeholder="Entrez Votre email" aria-describedby="sizing-addon2">
+
+                  </div>
+                  <div style="color:red;" *ngIf="form.get('email')?.hasError('required') && form.get('email')?.touched" class="alert alert-danger">
+                    email is  required
+
+                                       </div>
+                </div>
+              </div>
+
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">Spécialité</label>
+                <div class="col-md-10" >
+                  <select class="form-control" formControlName="specialites" >
+                    <option value="">-- Select --</option>
+                    <option *ngFor="let s of specialite" [value]="s.id" >{{s.specialites}}</option>
+                  </select>
+                  <div style="color:red;" *ngIf="form.get('specialites')?.hasError('required') && form.get('specialites')?.touched" class="alert alert-danger">
+                   Specialites is required
+
+                     </div>
+                </div>
+              </div>
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">Number of Clinic</label>
+                <div class="col-md-10">
+                  <input type="number" class="form-control"formControlName="numcabinet" >
+                  <div style="color:red;" *ngIf="form.get('numcabinet')?.hasError('required') && form.get('numcabinet')?.touched" class="alert alert-danger">
+                Number of clinic is required
+
+                      </div>
+
+                </div>
+              </div>
+
+
+              <div class="form-group row">
+                <label class="col-form-label col-md-2">
+                  Sate of Purchase</label>
+                <div class="col-md-10">
+                  <input type="date" class="form-control" formControlName="datedachat">
+                  <div style="color:red;" *ngIf="form.get('datedachat')?.hasError('required') && form.get('datedachat')?.touched" class="alert alert-danger">
+                State of purchase   is required
+
+                                 </div>
+                </div>
+              </div>
+
+              <div class="form-group mb-0" style="margin-left: 300px;">
+                <button class="btn btn-primary" style="    width: 279px;" type="submit">Register</button>
+                <button class="btn btn-danger"  style="    width: 279px;    margin-left: 13px;" type="reset">anunler</button>
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+      </div>
+      </div>
+      </div>
+      </div>

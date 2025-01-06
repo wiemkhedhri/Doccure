@@ -1,0 +1,112 @@
+<div class="card">
+  <div class="card-body pt-0">
+
+    <!-- Tab Menu -->
+    <nav class="user-tabs mb-4">
+      <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" href="#pat_appointments" data-toggle="tab">Consultation file</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#pat_prescriptions" data-toggle="tab">Prescriptions</a>
+        </li>
+
+      </ul>
+    </nav>
+    <!-- /Tab Menu -->
+
+    <!-- Tab Content -->
+    <div class="tab-content pt-0">
+
+      <!-- Appointment Tab -->
+      <div id="pat_appointments" class="tab-pane fade show active">
+        <div class="card card-table mb-0">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover table-center mb-0">
+                <thead>
+                  <tr>
+                    <th>created by </th>
+                    <th> Date</th>
+                    <th>Description</th>
+
+
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr  *ngFor="let f of listfiche">
+                    <td>
+                      <h2 class="table-avatar">
+                        <a  class="avatar avatar-sm mr-2">
+                          <img class="avatar-img rounded-circle" src="http://localhost:8081/acteur/files/{{f.medFicheConsultation.photo}}" alt="User Image">
+                        </a>
+                        <a href="doctor-profile.html">{{f.medFicheConsultation.nomprenom}} <span>{{f.medFicheConsultation.specialite.specialites}} </span></a>
+                      </h2>
+                    </td>
+                    <td>{{f.dateconsultation}} </td>
+                    <td>{{f.description}}</td>
+
+
+                  </tr>
+
+
+
+
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Appointment Tab -->
+
+      <!-- Prescription Tab -->
+      <div class="tab-pane fade" id="pat_prescriptions">
+        <div class="card card-table mb-0">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover table-center mb-0">
+                <thead>
+                  <tr>
+                    <th>Created by </th>
+                    <th>Date</th>
+                    <th> Prescription</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let o of listordonnance">
+                    <td>
+                      <h2 class="table-avatar">
+                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+                          <img class="avatar-img rounded-circle" src="assets/img/doctors/doctor-thumb-01.jpg" alt="User Image">
+                        </a>
+                        <a href="doctor-profile.html">Dr. Ruby Perrin <span>Dental</span></a>
+                      </h2>
+                    </td>
+                    <td>Prescription 1</td>
+                    <td>pppppppppp</td>
+
+
+                  </tr>
+
+
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Prescription Tab -->
+
+
+
+
+
+    </div>
+    <!-- Tab Content -->
+
+  </div>
+</div>

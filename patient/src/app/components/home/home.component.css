@@ -1,0 +1,53 @@
+
+.wrapper {
+  max-width: 996px;
+  margin: 0 auto;
+  padding: 5%;
+}
+
+.slider {
+  width: 50%;
+}
+
+.slide {
+  position: relative;
+}
+
+.slide__image {
+  display: block;
+  width: 100%;
+}
+
+.slide__links {
+  position: absolute;
+  bottom: 5%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+}
+
+.slide__link {
+  background-color: white;
+  color: black;
+  text-decoration: none;
+  text-align: center;
+  border: 3px solid black;
+  width: 40%;
+  line-height: 3;
+}
+
+.slick-dots li {
+  margin: 0;
+}
+
+.slick-dots li button:before {
+  color: lightgray;
+}
+
+.slick-dots li.slick-active button:before {
+  color: orange;
+}
+
+.slick-dots li button:before {
+  font-size: 12px;
+}

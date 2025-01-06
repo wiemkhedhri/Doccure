@@ -1,0 +1,189 @@
+		<!-- Main Wrapper -->
+		<div class="main-wrapper">
+
+			<!-- Header -->
+		<app-navbar></app-navbar>
+			<!-- /Header -->
+<br>
+
+			<!-- Page Content -->
+			<div class="content">
+				<div class="container-fluid">
+
+					<div class="row">
+						<div class="col-md-8 offset-md-2">
+
+							<!-- Register Content -->
+							<div class="account-content">
+								<div class="row align-items-center justify-content-center">
+									<div class="col-md-9 col-lg-4 login-left">
+										<img src="assets/img/login-banner.png" style="margin-left: -294px;  max-width: 214%;
+                 margin-top: -166px;" class="img-fluid" alt="Doccure Register">
+									</div>
+									<div class="col-md-9 col-lg-8 login-right" style="   margin-top: -35px; margin-right: -242px;">
+										<div class="login-header">
+											<h3>Registre For Patients</h3>
+										</div>
+
+										<!-- Register Form -->
+										<form   [formGroup]="AddForm"  (ngSubmit)="addpatient()" >
+                      <div class="form-group">
+                        <label for="text">First and Last Name</label>
+                        <input
+                            formControlName="nomprenom"
+
+                            type="text"
+                            class="form-control">
+                        <div *ngIf="AddForm.get('nomprenom')?.hasError('required') && AddForm.get('nomprenom')?.touched" class="alert alert-danger">
+                            <div *ngIf="AddForm.get('nomprenom')?.hasError('required') && AddForm.get('nomprenom')?.touched"> FirstName and Lastname is required.</div>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text">Gender</label>
+                      <select  class="form-control floating" class="form-control" formControlName="sexe">
+                        <option value="">-- Select --</option>
+                        <option>Female</option>
+                        <option>Male</option>
+
+                      </select>
+                      <div *ngIf="AddForm.get('sexe')?.hasError('required') && AddForm.get('sexe')?.touched" class="alert alert-danger">
+                        <div *ngIf="AddForm.get('sexe')?.hasError('required') && AddForm.get('sexe')?.touched"> Gender is required.</div>
+
+                    </div>
+
+                  </div>
+                  <div class="form-group">
+                    <label for="date">Date of Birth</label>
+                    <input
+                        formControlName="datenaissance"
+
+                        type="date"
+                        class="form-control">
+                    <div *ngIf="AddForm.get('datenaissance')?.hasError('required') && AddForm.get('datenaissance')?.touched" class="alert alert-danger">
+                        <div *ngIf="AddForm.get('datenaissance')?.hasError('required') && AddForm.get('datenaissance')?.touched"> Date of Birth is required.</div>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                  <label for="text">
+                    Social State</label>
+                  <select  class="form-control floating" class="form-control" formControlName="etatsociale">
+                    <option value="">-- Select --</option>
+                    <option>Single</option>
+                    <option>Maried</option>
+
+                  </select>
+                  <div *ngIf="AddForm.get('etatsociale')?.hasError('required') && AddForm.get('etatsociale')?.touched" class="alert alert-danger">
+                    <div *ngIf="AddForm.get('etatsociale')?.hasError('required') && AddForm.get('etatsociale')?.touched"> Social State is required.</div>
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="text">Phone Number</label>
+                <input
+                    formControlName="numtel"
+
+                    type="number"
+                    class="form-control">
+                <div *ngIf="AddForm.get('numtel')?.hasError('required') && AddForm.get('numtel')?.touched" class="alert alert-danger">
+                    <div *ngIf="AddForm.get('numtel')?.hasError('required') && AddForm.get('numtel')?.touched"> Phone Number is required.</div>
+
+                </div>
+            </div>
+            <div class="form-group">
+              <label for="text">
+                Address</label>
+              <input
+                  formControlName="adresse"
+
+                  type="text"
+                  class="form-control">
+              <div *ngIf="AddForm.get('adresse')?.hasError('required') && AddForm.get('adresse')?.touched" class="alert alert-danger">
+                  <div *ngIf="AddForm.get('adresse')?.hasError('required') && AddForm.get('adresse')?.touched">
+                    Address is required.</div>
+
+              </div>
+          </div>
+
+          <div class="form-group">
+            <label for="text">
+              Photo</label>
+            <input
+                formControlName="photo"
+                (change)="handleFileInput($event)"
+                type="file"
+                class="form-control">
+            <div *ngIf="AddForm.get('photo')?.hasError('required') && AddForm.get('photo')?.touched" class="alert alert-danger">
+                <div *ngIf="AddForm.get('photo')?.hasError('required') && AddForm.get('photo')?.touched">
+                  Your Image is required.</div>
+
+            </div>
+        </div>
+        <div class="form-group">
+          <label for="text">
+            Email</label>
+          <input
+              formControlName="email"
+
+              type="email"
+              class="form-control">
+          <div *ngIf="AddForm.get('email')?.hasError('required') && AddForm.get('email')?.touched" class="alert alert-danger">
+              <div *ngIf="AddForm.get('email')?.hasError('required') && AddForm.get('email')?.touched">
+                Your email is required.</div>
+
+          </div>
+      </div>
+      <div class="form-group">
+        <label for="text">
+          Password</label>
+        <input
+            formControlName="password"
+
+            type="password"
+            class="form-control">
+        <div *ngIf="AddForm.get('password')?.hasError('required') && AddForm.get('password')?.touched" class="alert alert-danger">
+            <div *ngIf="AddForm.get('password')?.hasError('required') && AddForm.get('password')?.touched">
+              Your Password is required.</div>
+
+        </div>
+    </div>
+
+
+
+
+											<div class="text-right">
+												<a class="forgot-link" routerLink="../login">Already have an account?</a>
+											</div>
+
+                      <div class="row form-row social-login">
+                        <div class="col-6">
+                          <button class="btn btn-primary btn-block btn-lg login-btn" [disabled]="AddForm.invalid" type="submit">Signup</button>
+                        </div>
+                        <div class="col-6">
+                          <button class="btn btn-danger btn-block btn-lg login-btn" type="reset">Annuler</button>
+                        </div>
+                      </div>
+										</form>
+
+										<!-- /Register Form -->
+
+									</div>
+								</div>
+							</div>
+							<!-- /Register Content -->
+
+						</div>
+					</div>
+
+				</div>
+
+			</div>
+			<!-- /Page Content -->
+<br>
+			<!-- Footer -->
+		<app-footer></app-footer>
+			<!-- /Footer -->
+
+		</div>
+		<!-- /Main Wrapper -->

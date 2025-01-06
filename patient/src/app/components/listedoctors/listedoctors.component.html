@@ -1,0 +1,153 @@
+	<!-- Main Wrapper -->
+  <div class="main-wrapper">
+
+    <!-- Header -->
+    <app-navbar *ngIf="currentuserstate ==null "></app-navbar>
+
+
+    <!-- Home Banner -->
+
+      <app-headersignin  *ngIf="currentuserstate === '1'" ></app-headersignin>
+    <!-- /Header -->
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb-bar">
+      <div class="container-fluid">
+        <div class="row align-items-center">
+          <div class="col-md-8 col-12">
+            <nav aria-label="breadcrumb" class="page-breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Search</li>
+              </ol>
+            </nav>
+            <h2 class="breadcrumb-title">Find Your doctor</h2>
+          </div>
+          <div class="col-md-4 col-12 d-md-block d-none">
+            <div class="sort-by">
+              <span class="sort-title">Sort by</span>
+              <span class="sortby-fliter">
+                <div class="form-group">
+                  <select #sel class="form-control floating" class="form-control" (change)="rechercheByspe(sel.value)" >
+                    <option [value]="'all'" >All</option>
+                    <option *ngFor="let s of specialite" [value]="s.specialites" >{{s.specialites}}</option>
+
+                  </select>
+              </div>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+
+
+    <!-- /Breadcrumb -->
+
+    <!-- Page Content -->
+    <div class="content">
+      <div class="container-fluid">
+
+        <div class="row">
+
+
+          <div class="col-md-12 col-lg-8 col-xl-9" style="margin-left: 187px;" >
+
+            <!-- Doctor Widget -->
+            <!-- <div class="form-group">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search..."
+                [(ngModel)]="term"
+              />
+            </div> -->
+            <div class="card"  *ngFor="let m of medecin "  >
+
+              <div class="card-body">
+                <div class="doctor-widget">
+                  <div class="doc-info-left" >
+                    <div class="doctor-img "  >
+                      <a href="doctor-profile.html"  >
+                        <img src="http://localhost:8081/medecin/files/{{m.photo}}" class="img-fluid" alt="User Image">
+                      </a>
+                    </div>
+                    <div class="doc-info-cont" >
+                      <h4 class="doc-name"><a href="doctor-profile.html"></a>   {{m.nomprenom}} </h4>
+                      <h5 class="doc-department">
+                        <img src="http://localhost:8081/specialite/files/{{m.specialite.photo}}" class="img-fluid" alt="Speciality">{{m.specialite.specialites}}
+                      </h5>
+
+                      <div class="clinic-details">
+                        <p class="doc-location"><i class="fa fa-envelope" aria-hidden="true"></i> {{m.email}}</p>
+
+                      </div>
+                      <div class="clinic-details">
+                        <p class="doc-location"><i class="fa fa-building"></i> CNAM : <a href="javascript:void(0);">{{m.cnam}}</a></p>
+
+
+                      </div>
+                      <div class="clinic-details">
+                        <p class="doc-location"><i class="fa fa-phone" aria-hidden="true"></i>Mobile Number : <a href="javascript:void(0);">{{m.numtel}}</a></p>
+
+                      </div>
+                      <div class="clinic-details">
+                        <p class="doc-location"><i class="fa fa-graduation-cap" aria-hidden="true"></i> Faculty : <a href="javascript:void(0);">{{m.faculte}}</a></p>
+
+
+                      </div>
+                    </div>
+                  </div>
+                  <div class="doc-info-right">
+                    <div class="clini-infos">
+                      <ul>
+
+                        <li><i class="fas fa-map-marker-alt"></i> {{m.adresse}}</li>
+                        <li><i class="far fa-money-bill-alt"></i> {{m.prix}} </li>
+                      </ul>
+                    </div>
+                    <div class="clinic-booking">
+                      <!-- <a class="view-pro-btn"  routerLink="../doctorprofile/{{m.id}}" href="">View Profile</a> -->
+                      <a *ngIf="state=='1'" class="apt-btn" routerLink="/calnder/{{m.id}}">Book Appointment</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /Doctor Widget -->
+
+            <!-- Doctor Widget -->
+
+            <!-- /Doctor Widget -->
+
+            <!-- Doctor Widget -->
+
+            <!-- /Doctor Widget -->
+
+            <!-- Doctor Widget -->
+
+            <!-- /Doctor Widget -->
+
+            <!-- Doctor Widget -->
+
+            <!-- /Doctor Widget -->
+
+            <!-- <div class="load-more text-center">
+              <a class="btn btn-primary btn-sm" href="javascript:void(0);">Load More</a>
+            </div> -->
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /Page Content -->
+
+    <!-- Footer -->
+<app-footer></app-footer>
+    <!-- /Footer -->
+
+  </div>
+  <!-- /Main Wrapper -->

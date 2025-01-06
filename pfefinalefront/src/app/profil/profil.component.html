@@ -1,0 +1,401 @@
+<!-- Page Wrapper -->
+<div class="page-wrapper">
+  <div class="content container-fluid">
+    <!-- Page Header -->
+    <div class="page-header">
+      <div class="row">
+        <div class="col">
+          <h3 class="page-title">Profile</h3>
+          <ul class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+            <li class="breadcrumb-item active">Profile</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <!-- /Page Header -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="profile-header">
+          <div class="row align-items-center">
+            <div class="col-auto profile-image">
+              <a href="#">
+                <img
+                  class="rounded-circle"
+                  style="height: 193px; max-width: 158px"
+                  alt="User Image"
+                  src="http://localhost:8081/acteur/files/{{
+                    utilisateuractuel?.photo
+                  }}"
+                />
+              </a>
+            </div>
+            <div class="col ml-md-n2 profile-user-info">
+              <h4 class="user-name mb-0">{{ utilisateuractuel?.nomprenom }}</h4>
+              <h6 class="text-muted">{{ utilisateuractuel?.email }}</h6>
+              <div class="user-Location">
+                <i class="fa fa-map-marker"></i>
+                {{ utilisateuractuel?.adresse }}
+              </div>
+              <div class="about-text">{{ utilisateuractuel?.aboutme }}</div>
+            </div>
+            <div class="col-auto profile-btn">
+              <a
+                href="#Add_Specialities_details"
+                data-toggle="modal"
+                class="btn btn-primary"
+              >
+                <span style="color: white"> Edit Photo</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="profile-menu">
+          <ul class="nav nav-tabs nav-tabs-solid">
+            <li class="nav-item">
+              <a
+                class="nav-link active"
+                data-toggle="tab"
+                href="#per_details_tab"
+                >About</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" data-toggle="tab" href="#password_tab"
+                >Password</a
+              >
+            </li>
+          </ul>
+        </div>
+
+        <!-- Add Modal -->
+        <div
+          class="modal fade"
+          id="Add_Specialities_details"
+          aria-hidden="true"
+          role="dialog"
+        >
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title">Update Photo</h5>
+                <button
+                  type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close"
+                >
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <form [formGroup]="updateimage">
+                  <div class="row form-row">
+                    <div class="col-12 col-sm-6"></div>
+                    <div class="col-12">
+                      <div class="form-group">
+                        <label>Image</label>
+                        <input
+                          formControlName="photo"
+                          type="file"
+                          (change)="handleFileInput($event)"
+                          class="form-control"
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    data-dismiss="modal"
+                    class="btn btn-primary btn-block"
+                    (click)="updateimages()"  >
+                    Save Changes
+                  </button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- /ADD Modal -->
+        <div class="tab-content profile-tab-cont">
+          <!-- Personal Details Tab -->
+          <div class="tab-pane fade show active" id="per_details_tab">
+            <!-- Personal Details -->
+            <div class="row">
+              <div class="col-lg-12">
+                <div class="card">
+                  <div class="card-body">
+                    <h5 class="card-title d-flex justify-content-between">
+                      <span>Personal Details</span>
+                      <a
+                        class="edit-link"
+                        data-toggle="modal"
+                        (click)="patchform()"
+                        href="#edit_personal_details"
+                        ><i class="fa fa-edit mr-1"></i>Edit</a
+                      >
+                    </h5>
+                    <div class="row">
+                      <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">
+                        Full Name
+                      </p>
+                      <p class="col-sm-10">
+                        {{ utilisateuractuel?.nomprenom }}
+                      </p>
+                    </div>
+                    <div class="row">
+                      <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">
+                        Date of Birth
+                      </p>
+                      <p class="col-sm-10">
+                        {{ utilisateuractuel?.datenaissance }}
+                      </p>
+                    </div>
+                    <div class="row">
+                      <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">
+                        Gender
+                      </p>
+                      <p class="col-sm-10">{{ utilisateuractuel?.sexe }}</p>
+                    </div>
+                    <div class="row">
+                      <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">
+                        Email
+                      </p>
+                      <p class="col-sm-10">{{ utilisateuractuel?.email }}</p>
+                    </div>
+                    <div class="row">
+                      <p class="col-sm-2 text-muted text-sm-right mb-0 mb-sm-3">
+                        Mobile
+                      </p>
+                      <p class="col-sm-10">{{ utilisateuractuel?.numtel }}</p>
+                    </div>
+                    <div class="row">
+                      <p class="col-sm-2 text-muted text-sm-right mb-0">
+                        Address
+                      </p>
+                      <p class="col-sm-10 mb-0">
+                        {{ utilisateuractuel?.adresse }}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <!-- edit model -->
+
+                <div
+                  class="modal fade"
+                  id="edit_personal_details"
+                  aria-hidden="true"
+                  role="dialog"
+                >
+                  <div
+                    class="modal-dialog modal-dialog-centered"
+                    role="document"
+                  >
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <h5 class="modal-title">Personal Information</h5>
+                        <button
+                          type="button"
+                          class="close"
+                          data-dismiss="modal"
+                          aria-label="Close"
+                        >
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <form [formGroup]="updateform">
+                          <div class="row form-row">
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label>Full Name</label>
+                                <input
+                                  formControlName="nomprenom"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label>Gender</label>
+                                <select
+                                  name=""
+                                  class="form-control"
+                                  formControlName="sexe"
+                                >
+                                  <option>-- Select --</option>
+                                  <option value="Female">Female</option>
+                                  <option value="Male">Male</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>Date of Birth</label>
+                                <input
+                                  formControlName="datenaissance"
+                                  type="date"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label>Mobile</label>
+                                <input
+                                  formControlName="numtel"
+                                  type="number"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label> Social state</label>
+                                <select
+                                  class="form-control"
+                                  formControlName="etatsociale"
+                                >
+                                  <option>Single</option>
+                                  <option>Maried</option>
+                                </select>
+                              </div>
+                            </div>
+                            <div class="col-12">
+                              <div class="form-group">
+                                <label>About me</label>
+                                <input
+                                  formControlName="aboutme"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label>Email</label>
+                                <input
+                                  formControlName="email"
+                                  type="email"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                            <div class="col-12 col-sm-6">
+                              <div class="form-group">
+                                <label>Adress</label>
+                                <input
+                                  formControlName="adresse"
+                                  type="text"
+                                  class="form-control"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <button
+                            type="button"
+                            data-dismiss="modal"
+                            class="btn btn-primary btn-block"
+                            (click)="clickupdateprofil()"
+                          >
+                            Save Changes
+                          </button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /Personal Details -->
+          </div>
+          <!-- /Personal Details Tab -->
+
+          <!-- Change Password Tab -->
+          <div id="password_tab" class="tab-pane fade">
+            <div class="card">
+              <div class="card-body">
+                <h5 class="card-title">Change Password</h5>
+                <div class="row">
+                  <div class="col-md-10 col-lg-6">
+                    <form [formGroup]="updatepasword">
+                      <div class="form-group">
+                        <label>Old Password</label>
+                        <input formControlName="password" type="password" class="form-control" />
+                        <div
+                        style="color: red"
+                        *ngIf="
+                          updatepasword
+                            .get('password')
+                            ?.hasError('required') &&
+                          updatepasword.get('password')?.touched "
+                        class="alert alert-danger"
+                      >
+                        Old Password required
+                      </div>
+                      </div>
+                      <div class="form-group">
+                        <label>New Password</label>
+                        <input
+                          type="password"
+                          formControlName="newpassword"
+                          class="form-control"
+                        />
+                        <div
+                          style="color: red"
+                          *ngIf="
+                            updatepasword
+                              .get('newpassword')
+                              ?.hasError('required') &&
+                            updatepasword.get('newpassword')?.touched
+                          "
+                          class="alert alert-danger"
+                        >
+                          new Password required
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input
+                          type="password"
+                          formControlName="confirmpassword"
+                          class="form-control"
+                        />
+                        <div
+                          style="color: red"
+                          *ngIf="
+                            updatepasword
+                              .get('confirmpassword')
+                              ?.hasError('required') &&
+                            updatepasword.get('confirmpassword')?.touched
+                          "
+                          class="alert alert-danger"
+                        >
+                          Confirm Password required
+                        </div>
+                        <div
+
+                        style="color: red"
+                          *ngIf=" f['confirmpassword'].errors && f['confirmpassword'].errors['confirmedValidator']"
+                        >
+                          Confirm password and password does not match
+                        </div>
+                      </div>
+                      <button class="btn btn-primary" (click)="updatepassword()" type="submit">
+                        Save Changes
+                      </button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /Change Password Tab -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- /Page Wrapper -->

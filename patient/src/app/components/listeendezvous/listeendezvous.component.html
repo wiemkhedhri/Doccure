@@ -1,0 +1,66 @@
+<div class="card">
+  <div class="card-body pt-0">
+    <!-- Tab Menu -->
+    <nav class="user-tabs mb-4">
+      <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+        <li class="nav-item">
+          <a class="nav-link active" href="#pat_appointments" data-toggle="tab">Appointments</a>
+        </li>
+      </ul>
+    </nav>
+    <!-- /Tab Menu -->
+    <!-- Tab Content -->
+    <div class="tab-content pt-0">
+      <!-- Appointment Tab -->
+      <div id="pat_appointments" class="tab-pane fade show active">
+        <div class="card card-table mb-0">
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-hover table-center mb-0">
+                <thead>
+                  <tr>
+                    <th>Doctor</th>
+                    <th>Appt Date</th>
+
+
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let rendezV of listrendezvous">
+                    <td>
+                      <h2 class="table-avatar">
+                        <a href="doctor-profile.html" class="avatar avatar-sm mr-2">
+                          <img class="avatar-img rounded-circle" src="http://localhost:8081/patient/files/{{ rendezV.medecinrendezvous.photo}}" alt="User Image">
+                        </a>
+                        <a >{{rendezV.medecinrendezvous.nomprenom}} <span>{{rendezV.medecinrendezvous.specialite.specialites}}</span></a>
+                      </h2>
+                    </td>
+                    <td>{{rendezV.starttime|date:'medium'}}</td>
+                    <td class="text-right">
+                      <div class="table-action">
+
+                        <a (click)="supprimer(rendezV.coderv)" href="javascript:void(0);" class="btn btn-sm bg-danger-light">
+                          <i class="fas fa-times"></i> supprimer
+                        </a>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- /Appointment Tab -->
+
+
+
+
+
+
+    </div>
+    <!-- Tab Content -->
+
+  </div>
+</div>

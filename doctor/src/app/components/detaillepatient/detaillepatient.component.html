@@ -1,0 +1,456 @@
+
+
+			<div class="card">
+        <div class="card-body">
+          <div class="doctor-widget">
+            <div class="doc-info-left">
+              <div class="doctor-img">
+                <img src="http://localhost:8081/patient/files/{{Patient?.photo}}" class="img-fluid" alt="User Image">
+              </div>
+              <div class="doc-info-cont">
+                <h4 class="doc-name">{{Patient?.nomprenom}}</h4>
+                <p class="doc-speciality">{{Patient?.role}}</p>
+                <p class="doc-department"><i class="far fa-calendar-alt"></i> <span style="color: black;">{{Patient?.datenaissance}}</span> </p>
+                <p class="doc-department"> <i class="fas fa-venus-mars"></i> <span style="color: black;">{{Patient?.sexe}} </span></p>
+                <p class="doc-department"> <i class="fas fa-envelope"></i> <span style="color: black;"> {{Patient?.email}} </span></p>
+                <!-- <div class="clinic-details">
+                  <p class="doc-location"><i class="fas fa-map-marker-alt"></i> Newyork, USA - <a href="javascript:void(0);">Get Directions</a></p>
+
+                </div> -->
+
+              </div>
+            </div>
+            <div class="doc-info-right">
+
+<br>
+<div class="clini-infos">
+  <ul>
+    <p class="doc-department"> <i class="fas fa-phone-alt"></i> <span style="color: black;"> {{Patient?.numtel}} </span></p>
+    <p class="doc-department"><i class="fas fa-map-marker-alt"></i>  <span style="color: black;"> {{Patient?.adresse}} </span></p>
+
+
+  </ul>
+</div>
+
+              <div class="clinic-booking">
+                <!-- <a class="apt-btn" routerLink="/detaillepatient/{{fichepatient.id}}">Medical File</a> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <!-- Page Content -->
+    <div class="content"  >
+      <div class="container-fluid">
+
+        <div class="row">
+          <div class="col-md-12">
+            <div class="card" style="    width: 999px;      margin-left: -48px;">
+              <div class="card-body pt-0">
+
+                <!-- Tab Menu -->
+                <nav class="user-tabs mb-4">
+                  <ul class="nav nav-tabs nav-tabs-bottom nav-justified">
+                    <li class="nav-item">
+                      <a class="nav-link active" href="#pat_appointments" data-toggle="tab"> Consultation File</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="#pat_prescriptions" data-toggle="tab"> Prescription</a>
+                    </li>
+
+
+                  </ul>
+                </nav>
+                <!-- /Tab Menu -->
+
+                <!-- Tab Content -->
+                <div class="tab-content pt-0">
+
+                  <!-- Appointment Tab -->
+                  <div id="pat_appointments" class="tab-pane fade show active">
+                    <div class="text-right">
+                      <a   style="color: white;" type="button" (click)="hiddentestficheconsultation()" class="add-new-btn">Add Consultation File</a>
+                    </div>
+                    <div class="card card-table mb-0">
+                      <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table table-hover table-center mb-0">
+                            <thead>
+                              <tr>
+                                <th>Full Name</th>
+                                <th>Date of Consultation</th>
+                                <th>Description</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let f of listficheconsultation" >
+                                <td>{{f.nomprenom}}</td>
+                                <td>{{f.dateconsultation}}</td>
+                                <td>
+                            {{f.description}}
+                                </td>
+                                <td class="text-right">
+                                  <div class="table-action">
+                                    <!-- <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                                      <i class="fas fa-print"></i> Print
+                                    </a> -->
+                                    <a routerLink="/dashbord/viewconsultation/{{f.numfiche}}" class="btn btn-sm bg-info-light">
+                                      <i class="far fa-eye"   ></i> View
+                                    </a>
+                                    <a  (click)="updateformconsultation()"  (click)="patchvalue(f.numfiche)" class="btn btn-sm bg-success-light">
+                                      <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a  (click)="deleteficheconsultation(f.numfiche)" class="btn btn-sm bg-danger-light">
+                                      <i class="far fa-trash-alt"></i> Delete
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+
+
+
+
+                  <!-- /Appointment Tab -->
+
+                  <!-- Prescription Tab -->
+                  <div class="tab-pane fade" id="pat_prescriptions">
+                    <div class="text-right">
+                      <a   style="color: white;" type="button" (click)="hiddentestordonnance()" class="add-new-btn">Add Prescription</a>
+                    </div>
+                    <div class="card card-table mb-0">
+                      <div class="card-body">
+                        <div class="table-responsive">
+                          <table class="table table-hover table-center mb-0">
+                            <thead>
+                              <tr >
+                                <th>Full Name </th>
+                                <th>Date </th>
+                                <th>Prescription</th>
+                                <th></th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr *ngFor="let o of allordonnance">
+                                <td>{{o.nomprenom}}</td>
+                                <td>{{o.dateordonnance}}</td>
+                                <td>
+                                  {{o.prescription}}
+                                </td>
+                                <td class="text-right">
+                                  <div class="table-action">
+                                    <!-- <a href="javascript:void(0);" class="btn btn-sm bg-primary-light">
+                                      <i class="fas fa-print"></i> Print
+                                    </a> -->
+                                    <a routerLink="/dashbord/viewordonnance/{{o.numordonnance}}"  class="btn btn-sm bg-info-light">
+                                      <i class="far fa-eye"></i> View
+                                    </a>
+                                    <a  class="btn btn-sm bg-success-light" (click)="patchvalueordonnance(o.numordonnance)" >
+                                      <i class="fas fa-edit"></i> Edit
+                                    </a>
+                                    <a  class="btn btn-sm bg-danger-light" (click)="deleteordonnance(o.numordonnance)">
+                                      <i class="far fa-trash-alt"></i> Delete
+                                    </a>
+                                  </div>
+                                </td>
+                              </tr>
+
+
+                            </tbody>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- /Prescription Tab -->
+
+
+
+                  <!-- Billing Tab -->
+
+                  <!-- /Billing Tab -->
+
+                </div>
+                <!-- Tab Content -->
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- /Page Content -->
+
+
+<!-- add consulattion form  -->
+
+<div class="page-wrapper"  *ngIf="addficheconsultationtest ==true"  >
+  <div class="content container-fluid">
+<hr>
+<div class="row">
+<div class="col-lg-12">
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Add Consultation File </h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="addconsultationForm"  (ngSubmit)="addficheconsultation()" >
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Name And LastName </label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" formControlName="nomprenom">
+          <div style="color:red;    " *ngIf="addconsultationForm.get('nomprenom')?.hasError('required') && addconsultationForm.get('nomprenom')?.touched" class="alert alert-danger">
+            Firstname and Lastname     is required
+
+                                  </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Date Consultation </label>
+        <div class="col-md-10">
+          <input type="date" class="form-control" formControlName="dateconsultation">
+          <div style="color:red;    " *ngIf="addconsultationForm.get('dateconsultation')?.hasError('required') && addconsultationForm.get('dateconsultation')?.touched" class="alert alert-danger">
+Date  is required
+
+                                  </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Description </label>
+        <div class="col-md-10">
+          <textarea id="story" name="story"  class="form-control" formControlName="description"
+          rows="5" cols="33">
+
+</textarea>
+<div style="color:red;    " *ngIf="addconsultationForm.get('description')?.hasError('required') && addconsultationForm.get('description')?.touched" class="alert alert-danger">
+Description is required
+
+                                    </div>
+
+        </div>
+      </div>
+
+
+      <div class="form-group mb-0" style="margin-left: 300px;">
+        <button class="btn btn-primary" style="    width: 279px;      margin-left: -182px;"    [disabled]="addconsultationForm.invalid" type="submit">Register</button>
+        <button class="btn btn-danger"  style="    width: 279px;    margin-left: 13px;"  (click)="annuler()" type="reset">anunler</button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+
+<!--/end add consultation-->
+
+<!-- update consultation form -->
+<div    class="test">
+   <div class="page-wrapper"  *ngIf="updateconsultationformtest ==true"  >
+  <div class="content container-fluid">
+<hr>
+<div class="row">
+<div class="col-lg-12">
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Update Consultation File </h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="updateconsultationform"  (ngSubmit)="clickupdateconsultation()" >
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Name And LastName </label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" formControlName="nomprenom">
+          <div style="color:red;    " *ngIf="updateconsultationform.get('nomprenom')?.hasError('required') && updateconsultationform.get('nomprenom')?.touched" class="alert alert-danger">
+            Firstname and Lastname     is required
+
+                                  </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Date Consultation </label>
+        <div class="col-md-10">
+          <input type="date" class="form-control" formControlName="dateconsultation">
+          <div style="color:red;    " *ngIf="updateconsultationform.get('dateconsultation')?.hasError('required') && updateconsultationform.get('dateconsultation')?.touched" class="alert alert-danger">
+Date  is required
+
+                                  </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Description </label>
+        <div class="col-md-10">
+          <textarea id="story" name="story"  class="form-control" formControlName="description"
+          rows="5" cols="33">
+
+</textarea>
+<div style="color:red;    " *ngIf="updateconsultationform.get('description')?.hasError('required') && updateconsultationform.get('description')?.touched" class="alert alert-danger">
+Description is required
+
+                                    </div>
+
+        </div>
+      </div>
+
+
+      <div class="form-group mb-0" style="margin-left: 300px;">
+        <button class="btn btn-primary" style="    width: 279px;      margin-left: -182px;"    [disabled]="updateconsultationform.invalid" type="submit">Register</button>
+        <button class="btn btn-danger"  style="    width: 279px;    margin-left: 13px;"  (click)="annuler()" type="reset">anunler</button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- end update consultationform -->
+ <!-- add ordonnance -->
+ <div class="page-wrapper"  *ngIf="addprescriptiontest ==true"  >
+  <div class="content container-fluid">
+<hr>
+<div class="row">
+<div class="col-lg-12">
+<div class="card">
+  <div class="card-header">
+    <h4 class="card-title">Add Prescription </h4>
+  </div>
+  <div class="card-body">
+    <form [formGroup]="addordonnance"  (ngSubmit)="clickaddordonnance()" >
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Name And LastName </label>
+        <div class="col-md-10">
+          <input type="text" class="form-control" formControlName="nomprenom">
+          <div style="color:red;    " *ngIf="addordonnance.get('nomprenom')?.hasError('required') && addordonnance.get('nomprenom')?.touched" class="alert alert-danger">
+            Firstname and Lastname     is required
+
+                                  </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Date  </label>
+        <div class="col-md-10">
+          <input type="date" class="form-control" formControlName="dateordonnance">
+          <div style="color:red;    " *ngIf="addordonnance.get('dateordonnance')?.hasError('required') && addordonnance.get('dateordonnance')?.touched" class="alert alert-danger">
+       Date  is required
+
+                                  </div>
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-form-label col-md-2">Prescription</label>
+        <div class="col-md-10">
+          <textarea id="story" name="story"  class="form-control" formControlName="prescription"
+          rows="5" cols="33">
+
+      </textarea>
+        <div style="color:red;    " *ngIf="addordonnance.get('prescription')?.hasError('required') && addordonnance.get('prescription')?.touched" class="alert alert-danger">
+            Prescription is required
+
+                                    </div>
+
+        </div>
+      </div>
+
+
+      <div class="form-group mb-0" style="margin-left: 300px;">
+        <button class="btn btn-primary" style="    width: 279px;      margin-left: -182px;"    [disabled]="addordonnance.invalid" type="submit">Register</button>
+        <button class="btn btn-danger"  style="    width: 279px;    margin-left: 13px;"  (click)="annuler()" type="reset">anunler</button>
+      </div>
+
+
+    </form>
+  </div>
+</div>
+</div>
+</div>
+</div>
+</div>
+ <!-- end add ordonnace -->
+  <!-- update ordonnance -->
+  <div class="page-wrapper"  *ngIf="updateprescriptiontes ==true"  >
+    <div class="content container-fluid">
+  <hr>
+  <div class="row">
+  <div class="col-lg-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">Add Prescription </h4>
+    </div>
+    <div class="card-body">
+      <form [formGroup]="updateordonnance"  (ngSubmit)="clickaddordonnance()" >
+        <div class="form-group row">
+          <label class="col-form-label col-md-2">Name And LastName </label>
+          <div class="col-md-10">
+            <input type="text" class="form-control" formControlName="nomprenom">
+            <div style="color:red;    " *ngIf="addordonnance.get('nomprenom')?.hasError('required') && addordonnance.get('nomprenom')?.touched" class="alert alert-danger">
+              Firstname and Lastname     is required
+
+                                    </div>
+          </div>
+        </div>
+
+        <div class="form-group row">
+          <label class="col-form-label col-md-2">Date  </label>
+          <div class="col-md-10">
+            <input type="date" class="form-control" formControlName="dateordonnance">
+            <div style="color:red;    " *ngIf="addordonnance.get('dateordonnance')?.hasError('required') && addordonnance.get('dateordonnance')?.touched" class="alert alert-danger">
+         Date  is required
+
+                                    </div>
+          </div>
+        </div>
+        <div class="form-group row">
+          <label class="col-form-label col-md-2">Prescription</label>
+          <div class="col-md-10">
+            <textarea id="story" name="story"  class="form-control" formControlName="prescription"
+            rows="5" cols="33">
+
+        </textarea>
+          <div style="color:red;    " *ngIf="addordonnance.get('prescription')?.hasError('required') && addordonnance.get('prescription')?.touched" class="alert alert-danger">
+              Prescription is required
+
+                                      </div>
+
+          </div>
+        </div>
+
+
+        <div class="form-group mb-0" style="margin-left: 300px;">
+          <button class="btn btn-primary" style="    width: 279px;      margin-left: -182px;"    [disabled]="addordonnance.invalid" type="submit">Register</button>
+          <button class="btn btn-danger"  style="    width: 279px;    margin-left: 13px;"  (click)="annuler()" type="reset">anunler</button>
+        </div>
+
+
+      </form>
+    </div>
+  </div>
+  </div>
+  </div>
+  </div>
+  </div>
+   <!-- end update ordonnace -->
+

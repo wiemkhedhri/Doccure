@@ -1,0 +1,54 @@
+<div class="profile-sidebar" style="width: 299px;">
+  <div class="widget-profile pro-widget-content">
+    <div class="profile-info-widget">
+      <a href="#" class="booking-doc-img">
+        <img src="http://localhost:8081/patient/files/{{Patient?.photo}}" alt="User Image">
+      </a>
+      <div class="profile-det-info">
+        <h3></h3>
+
+        <div class="patient-details">
+          <h5 class="mb-0">{{Patient?.role}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="dashboard-widget">
+    <nav class="dashboard-menu">
+      <ul>
+
+
+        <li [class]="activeSideBar == 'rendezvous' ? 'active':'' " (click)="change('rendezvous')">
+          <a routerLink="/dashboard/" type="button">
+            <i class="fas fa-calendar-check"></i>
+            <span>Rendez-Vous</span>
+          </a>
+        </li>
+        <li [class]="activeSideBar == 'dossiermedicale' ? 'active':'' " (click)="change('dossiermedicale')">
+          <a routerLink="/dashboard/dossiermedicale"  type="button">
+            <i class="fas fa-file-invoice"></i>
+            <span>Dossier Médicale</span>
+          </a>
+        </li>
+        <li [class]="activeSideBar == 'profilesettings' ? 'active':'' " (click)="change('profilesettings')">
+          <a routerLink="/dashboard/profilesettings" type="button">
+            <i class="fas fa-user-cog"></i>
+            <span>Profile Settings</span>
+          </a>
+        </li>
+        <li [class]="activeSideBar == 'changepass' ? 'active':'' " (click)="change('changepass')">
+          <a routerLink="/dashboard/changepassword"type="button">
+            <i class="fas fa-lock"></i>
+            <span>Change Password</span>
+          </a>
+        </li>
+        <li>
+          <a  (click)="logout()" type="button">
+            <i class="fas fa-sign-out-alt"></i>
+            <span>Logout</span>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+</div>
